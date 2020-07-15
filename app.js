@@ -1,11 +1,28 @@
 const validator = require('validator');
 const chalk = require('chalk');
-const getNotes = require('./notes.js');
+const yargs = require('yargs');
 
+const getNotes = require('./notes.js');
 const log = console.log;
 
-log(chalk.blue("Success!", "Wwwwwooow", chalk.underline("Mutua!!")));
-log(chalk.red.bold("Error"))
+//Create add Commande
+yargs.command({
+    command: 'add',
+    describe: "Add a new note",
+    handler: function () {
+        log("Adding a new note!");
+    },
+});
 
-log(getNotes());
-log(validator.isURL('fuktrrrumpandcruz.io'));
+
+
+//Create remove command
+yargs.command({
+    command: 'remove',
+    describe: 'Remove a note',
+    handler: function () {
+        log("Removing the note!");
+    },
+});
+
+log(yargs.argv);
