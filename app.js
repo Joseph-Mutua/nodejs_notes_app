@@ -25,4 +25,22 @@ yargs.command({
     },
 });
 
+//List notes command
+yargs.command({
+    command: 'list',
+    describe: 'List the notes',
+    handler: function () {
+        log("Listing the Notes!");
+    }
+});
+
+//Read notes Command
+yargs.command({
+    command: 'read',
+    describe: 'List the notes',
+    handler: function () {
+        log("Reading the Notes!");
+    }
+});
+
 log(yargs.argv);
