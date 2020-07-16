@@ -48,8 +48,8 @@ yargs.command({
 yargs.command({
     command: 'list',
     describe: 'List the notes',
-    handler() {
-        log("Listing the Notes!");
+    handler(argv) {
+        notes.listNotes();
     }
 });
 
@@ -62,4 +62,4 @@ yargs.command({
     },
 });
 
-yargs.parse()
+yargs.parse();
