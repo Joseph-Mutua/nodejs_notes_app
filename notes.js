@@ -16,11 +16,11 @@ const addNote = function (title, body) {
         notes.push({
             title: title,
             body: body,
-        })
-        
-    saveNotes(notes)
-    log("New Note Added!");
-    
+        });
+
+        saveNotes(notes)
+        log("New Note Added!");
+
     }
     else {
         log("Note Title Taken!");
@@ -34,12 +34,12 @@ const saveNotes = function (notes) {
     const dataJSON = JSON.stringify(notes);
     fs.writeFileSync('notes.json', dataJSON);
 
-}
+};
 
 
 const loadNotes = function () {
     try {
-        const dataBurfer = fs.readFileSync('notes.json')
+        const dataBurfer = fs.readFileSync('notes.json');
         const dataJSON = dataBurfer.toString();
         return JSON.parse(dataJSON);
 
@@ -47,11 +47,20 @@ const loadNotes = function () {
     catch (e) {
         return [];
     }
-}
+};
 
+const removeNote = function (title) {
+    const notes = loadNotes();
+    const notesToKeep = notes.filter(function (note) {
+        return note.title !== title;
+    });
 
+    saveNotes(notesToKeep);
+    log("Note Removed!");
+};
 
 module.exports = {
     getNotes: getNotes,
-    addNote: addNote
+    addNote: addNote,
+    removeNote: removeNote
 };
